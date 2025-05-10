@@ -1,0 +1,23 @@
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #24292e;
+  color: #ffffff;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.contact-info {
+  margin-top: 10px;
+}
+
+.contact-info a {
+  color: #61dafb;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}

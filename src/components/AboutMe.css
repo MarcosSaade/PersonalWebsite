@@ -1,0 +1,34 @@
+.about-me {
+  padding: 80px 40px 60px;
+  background-color: #f4f4f9;
+}
+
+.about-me h2 {
+  margin-bottom: 30px;
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #3a0ca3;
+  text-align: left;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-me p {
+  max-width: 800px;
+  margin: 0 auto 20px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: #444;
+  text-align: left;
+}
+
+.about-me a {
+  color: #5e60ce;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.about-me a:hover {
+  text-decoration: underline;
+}
