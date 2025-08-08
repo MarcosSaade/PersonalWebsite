@@ -1,31 +1,52 @@
 import React from 'react';
-import './Navbar.css';
 import { Link } from 'react-router-dom';
-import { FaEnvelope, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FiMail, FiSun, FiMoon } from 'react-icons/fi';
+import { FaLinkedinIn, FaGithub } from 'react-icons/fa6';
+import { useTheme } from '../contexts/ThemeContext';
+import './Navbar.css';
 
 function Navbar() {
+  const { isDarkMode, toggleTheme } = useTheme();
+
   return (
-    <nav className="navbar" aria-label="Main Navigation">
-      <div className="navbar-logo">
-        <Link to="/" className="logo-text">Marcos Saade</Link>
+    <nav className="navbar">
+      <div className="navbar-left">
+        <Link to="/" className="navbar-logo">Marcos Saade</Link>
       </div>
-      <ul className="navbar-links">
-        <li>
-          <a href="mailto:marcossr2626@gmail.com" aria-label="Email">
-            <FaEnvelope style={{ marginRight: '6px' }} />
-          </a>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/in/marcos-saade" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <FaLinkedin style={{ marginRight: '6px' }} />
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/MarcosSaade" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <FaGithub style={{ marginRight: '6px' }} />
-          </a>
-        </li>
-      </ul>
+      <div className="navbar-right">
+        <button
+          onClick={toggleTheme}
+          aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+          className="theme-toggle"
+        >
+          {isDarkMode ? <FiSun /> : <FiMoon />}
+        </button>
+        <a
+          href="mailto:msmarcossaade@gmail.com"
+          aria-label="Email"
+          className="icon-link"
+        >
+          <FiMail />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/marcos-saade/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          className="icon-link"
+        >
+          <FaLinkedinIn />
+        </a>
+        <a
+          href="https://github.com/MarcosSaade"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+          className="icon-link"
+        >
+          <FaGithub />
+        </a>
+      </div>
     </nav>
   );
 }

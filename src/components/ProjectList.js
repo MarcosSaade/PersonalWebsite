@@ -9,6 +9,7 @@ import dementiaImage from '../images/dementia.jpeg';
 import sirImage from '../images/sir.jpeg';
 import chessImage from '../images/chess.webp';
 import sugarzeroImage from '../images/sugarzero.png';
+import neuroCaptureImage from '../images/neurocapture.png';
 import './ProjectList.css';
 
 function ProjectList() {
@@ -16,7 +17,8 @@ function ProjectList() {
     {
       title: 'Dementia Detection ML Pipeline',
       description: 'A machine learning pipeline for detection of Alzheimer\'s Dementia through automatic voice analysis. This project encompasses data preprocessing, extraction of acoustic, temporal, and complexity features from speech recordings, and addressing class imbalance. I used Recursive Feature Elimination for feature selection and an SVM for classification. The project also features model interpretability and a fullstack (React.js, Flask) webapp for real time diagnosis. Developed during my third semester as part of an academic paper for which I am the lead author',
-      articleLink: 'dementiaDetectionML.pdf',
+      githubLink: 'https://github.com/MarcosSaade/DementiaDetection',
+      articleLink: null,
       readMoreLink: '/dementia',
       image: dementiaImage,
       tags: ['Machine Learning', 'Data Preprocessing', 'Feature Engineering', 'Full-Stack Development', 'Scientific Research'],
@@ -46,6 +48,15 @@ function ProjectList() {
         'Pygame',
       ],
       category: 'Machine Learning & AI'
+    },
+    {
+      title: 'NeuroCapture: Multimodal Data Capture App',
+      description: 'An fullstack app for capturing multimodal inputs —video (OpenPose), audio, accelerometers, demographic data, and cognitive tests— into unified sessions with precise timestamps. Includes live monitoring, session metadata, and export to CSV/JSON for downstream analysis. Built for the Center of Microsystems and Biodesign as a tool to streamline data collection in a study on gait, speech, and cognitive decline.',
+      githubLink: 'https://github.com/MarcosSaade/NeuroCapture',
+      readMoreLink: '/neurocapture',
+      image: neuroCaptureImage,
+      tags: ['Desktop App', 'Data Acquisition', 'SQL', 'Electron', 'Fullstack', 'Research'],
+      category: 'App Development'
     },
     {
       title: 'Financial Education App',
@@ -90,6 +101,18 @@ function ProjectList() {
     },
   ];
 
+  // Featured projects - the ones to highlight at the top
+  const featuredProjectTitles = [
+    'Dementia Detection ML Pipeline',
+    'NeuroCapture: Multimodal Data Capture App',
+    'Orthopedics Image Processing and Visualization App',
+    'SugarZero: Self-Play RL for a Custom Board Game'
+  ];
+
+  const featuredProjects = projects.filter(project => 
+    featuredProjectTitles.includes(project.title)
+  );
+
   const categories = ['Machine Learning & AI', 'App Development', 'Physics & Simulation'];
   const [collapsed, setCollapsed] = useState({
     'Machine Learning & AI': false,
@@ -107,7 +130,31 @@ function ProjectList() {
   return (
     <section id="projects" className="project-list">
       <h2>Projects</h2>
-      {categories.map(category => {
+      
+      {/* Featured Projects Section */}
+      <div className="featured-projects-section">
+        <h3 className="featured-title">Featured Projects</h3>
+        <div className="project-grid featured-grid">
+          {featuredProjects.map((project, index) => (
+            <div key={index} className="featured-project" style={{ '--card-index': index }}>
+              <ProjectCard
+                title={project.title}
+                description={project.description}
+                githubLink={project.githubLink}
+                articleLink={project.articleLink || null}
+                readMoreLink={project.readMoreLink}
+                image={project.image}
+                tags={project.tags}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* All Projects by Category */}
+      <div className="all-projects-section">
+        <h3 className="all-projects-title">All Projects</h3>
+        {categories.map(category => {
         const filtered = projects.filter(p => p.category === category);
         return (
           <div key={category}>
@@ -120,22 +167,24 @@ function ProjectList() {
             {!collapsed[category] && (
               <div className="project-grid">
                 {filtered.map((project, index) => (
-                  <ProjectCard
-                    key={index}
-                    title={project.title}
-                    description={project.description}
-                    githubLink={project.githubLink}
-                    articleLink={project.articleLink || null}
-                    readMoreLink={project.readMoreLink}
-                    image={project.image}
-                    tags={project.tags}
-                  />
+                  <div key={index} style={{ '--card-index': index }}>
+                    <ProjectCard
+                      title={project.title}
+                      description={project.description}
+                      githubLink={project.githubLink}
+                      articleLink={project.articleLink || null}
+                      readMoreLink={project.readMoreLink}
+                      image={project.image}
+                      tags={project.tags}
+                    />
+                  </div>
                 ))}
               </div>
             )}
           </div>
         );
       })}
+      </div>
     </section>
   );
 }
