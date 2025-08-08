@@ -22,7 +22,7 @@ function Navbar() {
           {isDarkMode ? <FiSun /> : <FiMoon />}
         </button>
         <a
-          href="mailto:msmarcossaade@gmail.com"
+          href="mailto:marcossr2626@gmail.com"
           aria-label="Email"
           className="icon-link"
         >
