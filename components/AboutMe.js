@@ -35,8 +35,7 @@ function AboutMe() {
           <strong>Technologies:</strong> PostgreSQL, REST APIs, full‑stack development, cross‑platform desktop apps.
         </p>
         <p>
-          <strong>Skills:</strong> Machine Learning, Data Engineering, Backend Architecture, Statistical Modeling,
-          Algorithms and Data Structures.
+          <strong>Skills:</strong> Machine Learning, Data Science, Full-Stack Development, Mathematical Modeling, Algorithms.
         </p>
         <p>
           <strong>GitHub:</strong> <a href="https://github.com/MarcosSaade" target="_blank" rel="noreferrer">github.com/MarcosSaade</a>
