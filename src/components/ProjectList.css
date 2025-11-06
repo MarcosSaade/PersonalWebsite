@@ -1,0 +1,213 @@
+.project-list {
+  padding: 100px 0 80px;
+  background: var(--bg-primary);
+  position: relative;
+}
+
+.project-list::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: var(--gradient-secondary);
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.project-list h2 {
+  text-align: center;
+  margin-bottom: 60px;
+  color: var(--text-primary);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 800;
+  transition: var(--transition-normal);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.project-list h2::after {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-sm);
+}
+
+.category-title {
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  margin: 60px 0 40px;
+  position: relative;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  padding: 16px 32px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  display: inline-block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: var(--shadow-md);
+}
+
+.category-title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.category-title:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: var(--primary-color);
+  color: white;
+}
+
+/* Featured Projects Section */
+.featured-projects-section {
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.featured-title {
+  font-size: clamp(1.6rem, 3.5vw, 2rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  margin: 0 0 50px;
+  position: relative;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.featured-title::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-sm);
+}
+
+.featured-grid {
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin-bottom: 0;
+}
+
+.featured-project {
+  position: relative;
+}
+
+.featured-project::before {
+  content: '★';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #ffd700;
+  font-size: 1.5rem;
+  z-index: 10;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+
+/* All Projects Section */
+.all-projects-section {
+  position: relative;
+}
+
+.all-projects-title {
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0 0 40px;
+  padding-top: 40px;
+  border-top: 2px solid var(--border-color);
+}
+
+/* Enhanced grid layout */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 40px;
+  padding: 0 20px;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+.project-grid .project-card {
+  animation-delay: calc(var(--card-index, 0) * 0.1s);
+}
+
+@media (max-width: 1200px) {
+  .project-grid {
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 32px;
+  }
+  
+  .featured-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 0 16px;
+  }
+  
+  .featured-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 16px;
+  }
+  
+  .featured-projects-section {
+    margin-bottom: 60px;
+  }
+  
+  .project-list {
+    padding: 60px 0;
+  }
+  
+  .category-title {
+    margin: 40px auto 32px;
+    padding: 12px 24px;
+    font-size: 1.4rem;
+  }
+  
+  .featured-title {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+  }
+  
+  .all-projects-title {
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    padding-top: 30px;
+  }
+}
