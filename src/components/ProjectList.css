@@ -147,6 +147,63 @@
   border-top: 2px solid var(--border-color);
 }
 
+/* Other Projects Section */
+.other-projects-section {
+  margin-top: 80px;
+  padding-top: 40px;
+  border-top: 2px solid var(--border-color);
+}
+
+.other-projects-title {
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0 0 40px;
+}
+
+.project-links {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.project-link {
+  display: block;
+  padding: 16px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+}
+
+.project-link:hover {
+  transform: translateX(8px);
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-md);
+  background: var(--bg-secondary);
+  color: var(--primary-color);
+}
+
+.project-link::before {
+  content: '→ ';
+  opacity: 0;
+  transition: var(--transition-normal);
+  margin-right: 8px;
+}
+
+.project-link:hover::before {
+  opacity: 1;
+}
+
 /* Enhanced grid layout */
 .project-grid {
   display: grid;
@@ -205,9 +262,24 @@
     margin-bottom: 30px;
   }
   
-  .all-projects-title {
+  .all-projects-title,
+  .other-projects-title {
     font-size: 1.4rem;
     margin-bottom: 30px;
     padding-top: 30px;
+  }
+
+  .other-projects-section {
+    margin-top: 60px;
+    padding-top: 30px;
+  }
+
+  .project-links {
+    padding: 0 16px;
+  }
+
+  .project-link {
+    padding: 14px 20px;
+    font-size: 1rem;
   }
 }

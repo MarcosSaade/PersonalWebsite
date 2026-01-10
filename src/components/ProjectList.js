@@ -1,6 +1,5 @@
 // src/components/ProjectList.js
 import React from 'react';
-import { useState } from 'react';
 import ProjectCard from './ProjectCard';
 import orthopedicsImage from '../images/orthopedics.jpeg';
 import solarPanelImage from '../images/solarpanel.png';
@@ -111,55 +110,56 @@ function ProjectList() {
     },
   ];
 
-  const categories = ['Machine Learning & AI', 'App Development', 'Physics & Simulation'];
-  const [collapsed, setCollapsed] = useState({
-    'Machine Learning & AI': false,
-    'App Development': false,
-    'Physics & Simulation': false,
-  });
+  // Featured projects
+  const featuredProjects = [
+    projects.find(p => p.title === 'Dementia Detection ML Pipeline'),
+    projects.find(p => p.title === 'SugarZero: Self-Play RL for a Custom Board Game'),
+    projects.find(p => p.title === 'S&P 500 Tactical Allocation with ML'),
+  ].filter(Boolean);
 
-  const toggleCategory = (category) => {
-    setCollapsed(prev => ({
-      ...prev,
-      [category]: !prev[category],
-    }));
-  };
+  // Other projects (non-featured)
+  const otherProjects = projects.filter(p => 
+    !featuredProjects.some(fp => fp.title === p.title)
+  );
 
   return (
     <section id="projects" className="project-list">
       <h2>Projects</h2>
-      <div className="all-projects-section">
-        <h3 className="all-projects-title">Projects by Category</h3>
-        {categories.map(category => {
-        const filtered = projects.filter(p => p.category === category);
-        return (
-          <div key={category}>
-            <h3
-              className="category-title collapsible"
-              onClick={() => toggleCategory(category)}
+      
+      {/* Featured Projects Section */}
+      <div className="featured-projects-section">
+        <h3 className="featured-title">Featured Projects</h3>
+        <div className="project-grid featured-grid">
+          {featuredProjects.map((project, index) => (
+            <div key={index} className="featured-project" style={{ '--card-index': index }}>
+              <ProjectCard
+                title={project.title}
+                description={project.description}
+                githubLink={project.githubLink}
+                articleLink={project.articleLink || null}
+                readMoreLink={project.readMoreLink}
+                image={project.image}
+                tags={project.tags}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Other Projects as Links */}
+      <div className="other-projects-section">
+        <h3 className="other-projects-title">Other Projects</h3>
+        <div className="project-links">
+          {otherProjects.map((project, index) => (
+            <a 
+              key={index} 
+              href={project.readMoreLink} 
+              className="project-link"
             >
-              {category} {collapsed[category] ? '▸' : '▾'}
-            </h3>
-            {!collapsed[category] && (
-              <div className="project-grid">
-                {filtered.map((project, index) => (
-                  <div key={index} style={{ '--card-index': index }}>
-                    <ProjectCard
-                      title={project.title}
-                      description={project.description}
-                      githubLink={project.githubLink}
-                      articleLink={project.articleLink || null}
-                      readMoreLink={project.readMoreLink}
-                      image={project.image}
-                      tags={project.tags}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        );
-      })}
+              {project.title}
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   );
