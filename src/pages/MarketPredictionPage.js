@@ -4,19 +4,33 @@ import { BlockMath, InlineMath } from 'react-katex';
 
 import PageTemplate from '../components/PageTemplate';
 import financeImage from '../images/quant.png';
+import performanceMetrics from '../images/htmp/performance_metrics.png';
+import cumulativeReturns from '../images/htmp/cumulative_returns.png';
+import allocationAnalysis from '../images/htmp/allocation_analysis.png';
+import returnsDistribution from '../images/htmp/returns_distribution.png';
+import rollingSharpe from '../images/htmp/rolling_sharpe.png';
 
 export default function MarketPredictionPage() {
   return (
     <PageTemplate title="Predicting S&P 500 Allocations with Machine Learning" image={financeImage}>
       {/* Introduction */}
       <p>
-        This project emerged from the <a href="https://www.kaggle.com/competitions/hull-tactical-market-prediction" target="_blank" rel="noopener noreferrer">Hull Tactical Market Prediction</a> Kaggle competition—a challenging forecasting task where participants predicted optimal daily allocations to the S&P 500 index. The twist? All features were completely obfuscated. We had no idea what the actual data represented.
+        This project emerged from the <a href="https://www.kaggle.com/competitions/hull-tactical-market-prediction" target="_blank" rel="noopener noreferrer">Hull Tactical Market Prediction</a> Kaggle competition—a challenging forecasting task where participants predicted optimal daily allocations to the S&P 500 index.
       </p>
+      <p>The competition's objective was outputting an allocation from 0% (fully out of the market) to 200% (leveraged 2x long) for each trading day according to our predictions, and this was evaluated with a custom metric based on the Sharpe ratio.</p>
+      
+      <div style={{textAlign: 'center', margin: '30px 0'}}>
+        <img src={performanceMetrics} alt="Performance Metrics Comparison" style={{maxWidth: '100%', height: 'auto', borderRadius: '8px'}} />
+        <p style={{fontSize: '0.9em', color: '#666', marginTop: '10px'}}>
+          Performance metrics comparison across validation folds, demonstrating consistent outperformance of the strategy over buy-and-hold baseline.
+        </p>
+      </div>
+
       <p>
         Instead of traditional market data with clear labels like "VIX," "10-year yield," or "unemployment rate," we received cryptic names: E1 through E20 (economic features), I1 through I10 (index features), M1 through M14 (monetary features), and so on. This obfuscation was likely due to proprietary data from the competition organizers, but it created a fascinating constraint: I couldn't rely on domain expertise or financial intuition to engineer features.
       </p>
       <p>
-        This forced me to approach the problem purely quantitatively. Without knowing which feature represented what, I had to extract every possible statistical pattern, interaction, and temporal relationship from the data. The result was a sophisticated pipeline generating over 2,000 engineered features from just 68 raw inputs—and then intelligently reducing them back down to what truly mattered.
+        This forced me to approach the problem purely quantitatively. Without knowing which feature represented what, I had to extract a lot of statistical patterns, interactions, and temporal relationships from the data. The result was a sophisticated pipeline generating over 2,000 engineered features from just 68 raw inputs—and then intelligently reducing them back down to what truly mattered.
       </p>
       <p>
         What started as a competition challenge became an exercise in modern financial machine learning. I drew heavily from concepts in Marcos López de Prado's "Advances in Financial Machine Learning," implementing purged cross-validation, meta-labeling, and regime-dependent position sizing. The project taught me as much about rigorous ML methodology as it did about quantitative finance.
@@ -44,12 +58,7 @@ export default function MarketPredictionPage() {
         <li><strong>Volatility Penalty:</strong> If your strategy's annualized volatility exceeded 120% of the market's volatility, the Sharpe ratio was penalized proportionally to the excess</li>
         <li><strong>Return Penalty:</strong> If your strategy underperformed the market, the penalty scaled quadratically with the return gap</li>
       </ul>
-      <p>
-        This meant aggressive leverage or wild tactical bets would be punished unless they delivered proportionally higher returns.
-      </p>
-      <p>
-        Traditional approaches often suffer from overfitting due to improper handling of time series data and fail to account for changing market regimes. My solution addressed these issues head-on through careful cross-validation, separate modeling of returns and volatility, and regime-adaptive position sizing.
-      </p>
+
 
       <h2>The Data: 68 Obfuscated Features</h2>
       <p>
@@ -85,13 +94,16 @@ export default function MarketPredictionPage() {
       <p>
         This preserved important tail information while controlling for data quality issues.
       </p>
+      <p>
+        This winsorization strategy was empirically better (as shown in cross-validation) than using a single global threshold across all features, which either over-corrected some features or under-corrected others.
+      </p>
 
       <h2>Preventing Look-Ahead Bias: Purged Cross-Validation</h2>
       <p>
         One of the most critical aspects of financial machine learning is avoiding look-ahead bias—the subtle ways information from the future can leak into your training process. Standard cross-validation, which randomly splits data into folds, is catastrophically inappropriate for time series.
       </p>
       <p>
-        Consider this: if you're predicting tomorrow's return, your label is based on tomorrow's price. If your validation set includes today's data point but your training set includes tomorrow's, you've just trained on the future. This is called label leakage, and it's one of the most common reasons financial ML models fail in production after backtesting beautifully.
+        Consider this: if you're predicting tomorrow's return, your label is based on tomorrow's price. If your validation set includes today's data point but your training set includes tomorrow's, you've just trained on the future.
       </p>
       <p>
         I implemented purged k-fold cross-validation, which handles time series data properly:
@@ -120,7 +132,7 @@ export default function MarketPredictionPage() {
         <li><strong>Long-term (63 and 126-day):</strong> Quarterly and semi-annual patterns—extended rolling windows and trend strength measures</li>
       </ul>
       <p>
-        For each raw feature and each window, I computed central tendency (mean, median), dispersion (std, range), and position (min, max, percentiles). This multi-scale approach captured both short-term noise and long-term signal.
+        For each raw feature and each window, I computed central tendency (mean, median), and dispersion (std, range, percentiles).
       </p>
 
       <h3>Volatility Features</h3>
@@ -151,19 +163,19 @@ export default function MarketPredictionPage() {
 
       <h3>Dimensionality Reduction</h3>
       <p>
-        After generating all possible statistical transformations, I had over 2,000 features from 68 raw inputs. This created both computational and statistical challenges. More features mean more opportunities for overfitting, especially with limited training data.
+        After generating a lot of statistical transformations and interactions, I had over 2,000 features from 68 raw inputs. This created both computational and statistical challenges. More features mean more opportunities for overfitting, especially with limited training data.
       </p>
       <p>
         I implemented a three-stage reduction strategy:
       </p>
       <p>
-        <strong>Stage 1: Correlation Clustering.</strong> Features with pairwise correlation above 0.95 were grouped together. These highly correlated features provide redundant information—knowing one tells you almost everything about the others. Clustering reduced multicollinearity while preserving the underlying information.
+        <strong>Stage 1: Correlation Clustering.</strong> Features with pairwise correlation above 0.95 were grouped together. These highly correlated features provide redundant information.
       </p>
       <p>
         <strong>Stage 2: PCA per Cluster.</strong> Within each correlation cluster, I applied Principal Component Analysis (PCA) to extract the main directions of variation. I retained enough components to explain 85% of each cluster's variance. This transformed groups of correlated features into uncorrelated principal components.
       </p>
       <p>
-        <strong>Stage 3: Feature Selection by Importance.</strong> Finally, I trained a preliminary model (a Random Forest) to score feature importance and selected the top 150 features. This balanced model capacity against overfitting risk.
+        <strong>Stage 3: Feature Selection by Importance.</strong> Finally, I trained a preliminary model (Random Forest) to score feature importance and selected the top 150 features. This balanced model capacity against overfitting risk. 150 features was found to be approximately optimal in cross-validation.
       </p>
       <p>
         The result was a refined feature set of 150 predictors that captured the essential patterns from the original 2,000+ engineered features.
@@ -197,7 +209,6 @@ export default function MarketPredictionPage() {
         <li>Learning rate of 0.05 (slower learning, better generalization)</li>
         <li>80% feature and row sampling (randomness to prevent overfitting)</li>
         <li>L1 and L2 regularization penalties</li>
-        <li>Early stopping after 50 rounds without validation improvement</li>
       </ul>
       <p>
         The output is a point estimate of expected return, which forms the μ component in our position sizing formula.
@@ -318,7 +329,7 @@ export default function MarketPredictionPage() {
         Building the models was one challenge; orchestrating their training was another. The three models had dependencies—the volatility model needed return predictions, and the meta-model needed both—which required careful coordination. This was a challenge during pipeline iterations.
       </p>
       <p>
-        The training script handled dependencies explicitly, training models in sequence: returns first, then volatility and meta-labeling in parallel (both depend on returns but not on each other).
+        I created a training script handled dependencies explicitly, training models in sequence: returns first, then volatility and meta-labeling in parallel (both depend on returns but not on each other).
       </p>
       <p>
         Hyperparameter tuning was done using Optuna, a Bayesian optimization framework. Rather than grid search (which explores a fixed grid) or random search (which samples randomly), Bayesian optimization learns from previous trials to intelligently explore the hyperparameter space.
@@ -331,6 +342,45 @@ export default function MarketPredictionPage() {
       <p>
         Evaluating the system across 5 purged cross-validation folds revealed consistent risk-adjusted performance:
       </p>
+
+      <div style={{display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center', margin: '30px 0'}}>
+
+        <div style={{flex: '1 1 600px', maxWidth: '900px', textAlign: 'center'}}>
+          <img src={performanceMetrics} alt="Performance Metrics Comparison" style={{width: '100%', height: 'auto', borderRadius: '8px'}} />
+          <p style={{fontSize: '0.9em', color: '#666', marginTop: '10px'}}>
+            Performance metrics comparison across validation folds, demonstrating consistent outperformance of the strategy over buy-and-hold baseline.
+          </p>
+        </div>
+
+        <div style={{flex: '1 1 600px', maxWidth: '900px', textAlign: 'center'}}>
+          <img src={allocationAnalysis} alt="Allocation Analysis" style={{width: '100%', height: 'auto', borderRadius: '8px'}} />
+          <p style={{fontSize: '0.9em', color: '#666', marginTop: '10px'}}>
+            Strategy position sizing analysis across validation folds, showing the distribution of allocations and their relationship to market conditions.
+          </p>
+        </div>
+
+        <div style={{flex: '1 1 600px', maxWidth: '900px', textAlign: 'center'}}>
+          <img src={returnsDistribution} alt="Returns Distribution" style={{width: '100%', height: 'auto', borderRadius: '8px'}} />
+          <p style={{fontSize: '0.9em', color: '#666', marginTop: '10px'}}>
+            Daily returns distribution comparison showing the strategy's superior risk-adjusted profile with comparable returns and lower volatility.
+          </p>
+        </div>
+
+        <div style={{flex: '1 1 600px', maxWidth: '900px', textAlign: 'center'}}>
+          <img src={rollingSharpe} alt="Rolling Sharpe Ratio" style={{width: '100%', height: 'auto', borderRadius: '8px'}} />
+          <p style={{fontSize: '0.9em', color: '#666', marginTop: '10px'}}>
+            Rolling 60-day Sharpe ratio analysis showing the strategy's risk-adjusted performance across different market conditions and time periods.
+          </p>
+        </div>
+
+        <div style={{flex: '1 1 600px', maxWidth: '900px', textAlign: 'center'}}>
+          <img src={cumulativeReturns} alt="Cumulative Returns" style={{width: '100%', height: 'auto', borderRadius: '8px'}} />
+          <p style={{fontSize: '0.9em', color: '#666', marginTop: '10px'}}>
+            Growth of $1,000 investment comparing the strategy against buy-and-hold across all validation folds, demonstrating comparable returns with significantly lower volatility. Notice how as the amount of training data increases, the strategy's performance improves.
+          </p>
+        </div>
+      </div>
+
       <table style={{margin: '20px 0', borderCollapse: 'collapse', width: '100%'}}>
         <thead>
           <tr style={{borderBottom: '2px solid #333'}}>
@@ -414,6 +464,7 @@ export default function MarketPredictionPage() {
       <p>
         This metric balances multiple objectives: generate returns, manage risk, avoid excessive volatility, and don't underperform the market. It rewarded strategies that beat the market with controlled risk, while punishing both reckless volatility and overly timid allocations.
       </p>
+
       <p>
         My system achieved adjusted Sharpe ratios between 0.99 and 1.88 across validation folds, with a mean of 1.49. In the context of this metric, a ratio above 1.0 is considered strong, as it indicates not only positive risk-adjusted returns but also successful navigation of both penalty mechanisms. It's worth noting tht the "do nothing" baseline—simply holding the S&P 500 with a 100% allocation—yields an adjusted Sharpe of approximately 0.46 across the competition dataset.
       </p>
@@ -421,16 +472,10 @@ export default function MarketPredictionPage() {
         <strong>Directional accuracy</strong> of 51.7% might seem barely better than random (50%), but this is actually realistic and valuable in financial markets. Even a 51-52% directional edge, combined with proper position sizing and risk management, can generate substantial risk-adjusted returns. The key isn't being right most of the time—it's making more when you're right than you lose when you're wrong.
       </p>
 
-      <h3>Key Insights</h3>
       <p>
-        <strong>Consistency Across Regimes:</strong> The system performed well across all 5 validation folds, which represented different historical periods and market conditions. This suggests the approach generalizes rather than overfitting to specific market environments.
+         The system performed well across all 5 validation folds, which represented different historical periods and market conditions. This suggests the approach generalizes rather than overfitting to specific market environments.
       </p>
-      <p>
-        <strong>Meta-Labeling Impact:</strong> While meta-labeling showed mixed results across folds (improvements ranging from -2.75% to +0.65%), it provides a robust framework for confidence-based position sizing that can be refined with additional meta-features or different confidence calibration approaches.
-      </p>
-      <p>
-        <strong>Regime Adaptation:</strong> The performance variance across folds validated the regime-dependent position sizing. Markets behave differently under different conditions, and the system adapted accordingly.
-      </p>
+
 
       <h2>Challenges and Lessons Learned</h2>
       
@@ -439,7 +484,7 @@ export default function MarketPredictionPage() {
         Working with completely anonymized features was initially frustrating—I couldn't apply any financial domain knowledge. But it forced me to think more rigorously about statistical relationships and temporal patterns. In some ways, this constraint made me a better ML practitioner. I had to trust the data and the methodology rather than relying on intuition that might be wrong.
       </p>
       <p>
-        The massive feature engineering effort (2,000+ features from 68 inputs) would have been impossible with manual feature selection. The quantitative approach—generating everything possible, then reducing intelligently—worked precisely because I couldn't cherry-pick based on financial theory.
+        The massive feature engineering effort would have been impossible with manual feature selection. The quantitative approach—generating everything possible, then reducing intelligently—worked precisely because I couldn't cherry-pick based on financial theory.
       </p>
 
       <h3>Pipeline Complexity</h3>
@@ -476,11 +521,6 @@ export default function MarketPredictionPage() {
         Currently, I use LightGBM for all prediction tasks. Combining multiple model types—XGBoost, neural networks, linear models—could capture different aspects of the data and improve robustness. Ensemble diversity often provides better out-of-sample performance than any single model. Ultimately, the pipeline complexity and competition deadlines discouraged me from pursuing this, but it's a promising avenue.
       </p>
 
-      <h3>Enhanced Meta-Features</h3>
-      <p>
-        The meta-labeling framework showed promise but mixed results. Adding more sophisticated meta-features could help:
-      </p>
-
       <h3>Multi-Asset Extension</h3>
       <p>
         The current system focuses on S&P 500 allocation. Extending it to multi-asset portfolio optimization—balancing stocks, bonds, commodities, currencies—would require portfolio-level constraints and correlation modeling but could significantly improve diversification and risk-adjusted returns.
@@ -496,13 +536,7 @@ export default function MarketPredictionPage() {
         This project taught me that good machine learning in finance isn't about finding a magic model—it's about rigorous methodology, careful handling of temporal data, and thoughtful separation of concerns. The obfuscated features forced me to develop a systematic, quantitative approach that I now apply even when domain knowledge is available.
       </p>
       <p>
-        Reading chapters in "Advances in Financial Machine Learning" was transformative. Concepts like purged cross-validation, meta-labeling, and regime-dependent sizing turned what could have been a naive regression problem into a sophisticated decision-making framework. These techniques are now permanent parts of my ML toolkit.
-      </p>
-      <p>
         Perhaps most importantly, I learned to respect the difficulty of financial prediction. A 51.7% directional accuracy sounds unimpressive until you realize that even this modest edge, combined with proper position sizing and risk management, can generate Sharpe ratios above 1.0. The key isn't being right all the time—it's being systematically right often enough, and managing risk when you're wrong.
-      </p>
-      <p>
-        Financial machine learning sits at the intersection of statistics, computer science, and economics. It's technically demanding, intellectually rich, and deeply practical. This project was my introduction to that world, and it's one I'm excited to explore further.
       </p>
     </PageTemplate>
   );

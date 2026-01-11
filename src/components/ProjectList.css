@@ -112,39 +112,12 @@
 }
 
 .featured-grid {
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 30px;
-  margin-bottom: 0;
-}
-
-.featured-project {
-  position: relative;
-}
-
-.featured-project::before {
-  content: '★';
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  color: #ffd700;
-  font-size: 1.5rem;
-  z-index: 10;
-  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
-}
-
-/* All Projects Section */
-.all-projects-section {
-  position: relative;
-}
-
-.all-projects-title {
-  font-size: clamp(1.4rem, 3vw, 1.8rem);
-  font-weight: 600;
-  color: var(--text-secondary);
-  text-align: center;
-  margin: 0 0 40px;
-  padding-top: 40px;
-  border-top: 2px solid var(--border-color);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  padding: 0 20px;
+  margin: 0 auto;
+  max-width: 1600px;
 }
 
 /* Other Projects Section */
@@ -204,7 +177,7 @@
   opacity: 1;
 }
 
-/* Enhanced grid layout */
+/* Enhanced grid layout - Legacy styles for reference, can be removed if not used elsewhere */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -218,28 +191,35 @@
   animation-delay: calc(var(--card-index, 0) * 0.1s);
 }
 
+@media (max-width: 1400px) {
+  .featured-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+}
+
 @media (max-width: 1200px) {
+  .featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  
   .project-grid {
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: 32px;
   }
-  
-  .featured-grid {
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
-  }
 }
 
 @media (max-width: 768px) {
-  .project-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    padding: 0 16px;
-  }
-  
   .featured-grid {
     grid-template-columns: 1fr;
     gap: 20px;
+    padding: 0 16px;
+  }
+  
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
     padding: 0 16px;
   }
   
@@ -251,18 +231,11 @@
     padding: 60px 0;
   }
   
-  .category-title {
-    margin: 40px auto 32px;
-    padding: 12px 24px;
-    font-size: 1.4rem;
-  }
-  
   .featured-title {
     font-size: 1.6rem;
     margin-bottom: 30px;
   }
   
-  .all-projects-title,
   .other-projects-title {
     font-size: 1.4rem;
     margin-bottom: 30px;

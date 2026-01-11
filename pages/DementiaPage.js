@@ -22,7 +22,7 @@ export default function DementiaPage() {
     <PageTemplate title="Detecting Alzheimer's from Voice Recordings" image={dementiaImage}>
       {/* 1. Introduction */}
       <p>
-  This was my very first research project—and it shaped how I think about AI, medicine, and what good machine learning can do for the world. It started in the first week of my third semester, when I ran into an old friend who mentioned a biomedical research team was looking for someone with data science skills. As it happened, I was actively searching for a research project, ideally one involving machine learning.
+  This was my very first research project—and it shaped how I think about AI, medicine, and what good machine learning can do for the world. It started in the first week of my third semester, when I ran into an old friend who mentioned a biomedical research team was looking for someone with data science skills. As it happened, I was actively searching for a research project where I could work with Machine Learning.
 </p>
 <p>
   The project sounded fascinating: build a machine learning system to detect Alzheimer's Dementia from simple voice recordings. Not only was it technically rich, but it also had the potential for real-world clinical impact. Within a few weeks, the team was reduced to just me and my fantastic advisor, Professor Sergio Tuch. I took over end-to-end responsibility: audio processing, feature engineering, modeling, analysis, and writing.

@@ -115,8 +115,6 @@ function ProjectList() {
   const featuredProjectTitles = [
     'Dementia Detection ML Pipeline',
     'S&P 500 Tactical Allocation with ML',
-    'NeuroCapture: Multimodal Data Capture App',
-    'Orthopedics Image Processing and Visualization App',
     'SugarZero: Self-Play RL for a Custom Board Game'
   ];
 
