@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import FeaturedProjectCard from './FeaturedProjectCard';
 import orthopedicsImage from '../images/orthopedics.jpeg';
 import solarPanelImage from '../images/solarpanel.png';
@@ -9,6 +10,8 @@ import sirImage from '../images/sir.jpeg';
 import chessImage from '../images/chess.webp';
 import sugarzeroImage from '../images/sugarzero.png';
 import neuroCaptureImage from '../images/neurocapture.png';
+import fleetImage from '../images/fleet.png';
+import salesImage from '../images/sales-analytics.png';
 import './ProjectList.css';
 
 function ProjectList() {
@@ -84,6 +87,22 @@ function ProjectList() {
       readMoreLink: '/chess',
       image: chessImage,
       tags: ['Algorithms and Data Structures', 'Pygame', 'AI', 'Alpha-Beta Pruning']
+    },
+    {
+      title: 'Fleet Optimization with Monte Carlo Simulation',
+      description: 'Discrete-event simulation framework optimizing corporate transportation fleet configuration using Monte Carlo analysis to balance service quality with operational costs.',
+      githubLink: 'https://github.com/MarcosSaade/fleet-optimization',
+      readMoreLink: '/fleet-optimization',
+      image: fleetImage,
+      tags: ['Operations Research', 'Monte Carlo Simulation', 'Optimization', 'Queueing Theory', 'Python']
+    },
+    {
+      title: 'Retail Sales Forecasting with Machine Learning',
+      description: 'Machine learning pipeline for forecasting retail demand across regions and product categories using time series analysis, clustering, and predictive modeling.',
+      githubLink: 'https://github.com/MarcosSaade/sales-forecasting',
+      readMoreLink: '/sales-prediction',
+      image: salesImage,
+      tags: ['Machine Learning', 'Time Series', 'Forecasting', 'Clustering', 'Data Science', 'Business Analytics']
     }
   ];
 
@@ -126,13 +145,13 @@ function ProjectList() {
         <h3 className="other-projects-title">Other Projects</h3>
         <div className="project-links">
           {otherProjects.map((project) => (
-            <a 
+            <Link 
               key={project.title}
-              href={project.readMoreLink} 
+              to={project.readMoreLink} 
               className="project-link"
             >
               {project.title}
-            </a>
+            </Link>
           ))}
         </div>
       </div>

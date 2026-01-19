@@ -16,6 +16,8 @@ import SolarPanelPage from './pages/SolarPanelPage';
 import SugarPage from './pages/SugarPage';
 import NeuroCapturePage from './pages/NeuroCapturePage';
 import MarketPredictionPage from './pages/MarketPredictionPage';
+import FleetOptimizationPage from './pages/FleetOptimizationPage';
+import SalesPredictionPage from './pages/SalesPredictionPage';
 
 import './App.css';
 
@@ -41,6 +43,8 @@ function App() {
             <Route path="/sugarzero" element={<SugarPage />} />
             <Route path="/neurocapture" element={<NeuroCapturePage />} />
             <Route path="/market-prediction" element={<MarketPredictionPage />} />
+            <Route path="/fleet-optimization" element={<FleetOptimizationPage />} />
+            <Route path="/sales-prediction" element={<SalesPredictionPage />} />
           </Routes>
         </main>
         <Footer />
