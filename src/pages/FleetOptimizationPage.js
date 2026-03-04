@@ -25,7 +25,7 @@ export default function FleetOptimizationPage() {
         This project emerged from a real operational challenge: design a fleet of buses and vans to transport students and staff from 6:00 AM to 10:00 PM, ensuring average wait times stay below 10 minutes while minimizing operational costs. The twist? Vehicle availability was constrained by schedules, capacities, and quantities. Some buses only operated during specific hours, vans had different capacity limits, and each vehicle type came with its own cost structure.
       </p>
       <p>
-        Rather than relying on back-of-the-envelope calculations or overly simplified deterministic models, I built a discrete-event simulation framework with Monte Carlo analysis to evaluate 48 valid fleet configurations under realistic conditions. Each configuration was tested across 50 simulations with stochastic passenger arrivals, generating over 2,400 simulation runs to identify robust, cost-effective solutions.
+        Rather than relying on back-of-the-envelope calculations or overly simplified deterministic models, I built a discrete-event simulation framework with Monte Carlo analysis to evaluate 48 valid fleet configurations under realistic conditions. Each configuration was tested across 500 simulations with stochastic passenger arrivals, generating over 2,400 simulation runs to identify robust, cost-effective solutions.
       </p>
       <p>
         The result was a comprehensive optimization study that balanced service quality with cost efficiency, providing actionable recommendations backed by statistical rigor. Along the way, I learned valuable lessons about queueing theory, simulation design, and the importance of modeling uncertainty in operations research.
@@ -236,7 +236,7 @@ export default function FleetOptimizationPage() {
         Running a single simulation for each configuration would give us point estimates, but operations research demands understanding variability. A configuration that performs well on average but has high variance in wait times is riskier than one with consistent performance.
       </p>
       <p>
-        I implemented Monte Carlo analysis by running <strong>50 independent simulations</strong> for each of the 48 configurations, totaling <strong>2,400 simulation runs</strong>. Each simulation used different random seeds for:
+        I implemented Monte Carlo analysis by running <strong>500 independent simulations</strong> for each of the 48 configurations, totaling <strong>24,000 simulation runs</strong>. Each simulation used different random seeds for:
       </p>
       <ul>
         <li>Passenger arrival times (stochastic Poisson process)</li>
@@ -247,7 +247,7 @@ export default function FleetOptimizationPage() {
         For each configuration, I calculated:
       </p>
       <ul>
-        <li><strong>Mean metrics</strong> (average wait time, cost, etc.) across all 50 runs</li>
+        <li><strong>Mean metrics</strong> (average wait time, cost, etc.) across all 500 runs</li>
         <li><strong>Standard deviations</strong> (variability of performance)</li>
         <li><strong>Min/Max values</strong> (best and worst cases)</li>
       </ul>
@@ -266,7 +266,7 @@ export default function FleetOptimizationPage() {
       </p>
       <ul>
         <li>Mean wait time: 10.42 minutes (± 0.74 minutes std. dev.)</li>
-        <li>Range: [8.71, 12.40] minutes across 50 simulations</li>
+        <li>Range: [8.71, 12.40] minutes across 500 simulations</li>
       </ul>
 
       <p>
@@ -572,7 +572,7 @@ export default function FleetOptimizationPage() {
         Decision-makers often want definitive answers: "What's the best configuration?" But operations research rarely provides certainty—only probabilistic guidance. The Monte Carlo analysis was essential for communicating this uncertainty.
       </p>
       <p>
-        Rather than saying "Configuration X has an average wait time of 7.9 minutes," I presented: "Configuration X has an average wait time of 7.9 minutes ± 0.6 minutes across 50 simulations, with a worst-case of 8.9 minutes." This framing helped stakeholders understand that <em>all</em> configurations have variability, and choosing a robust option means accepting some operational risk.
+        Rather than saying "Configuration X has an average wait time of 7.9 minutes," I presented: "Configuration X has an average wait time of 7.9 minutes ± 0.6 minutes across 500 simulations, with a worst-case of 8.9 minutes." This framing helped stakeholders understand that <em>all</em> configurations have variability, and choosing a robust option means accepting some operational risk.
       </p>
 
       <h2>Extensions and Future Work</h2>

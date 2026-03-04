@@ -7,33 +7,34 @@ function AboutMe() {
       <div className="about-container">
         <h2 className="about-title">About Me</h2>
         <p>
-          Hi, I'm Marcos Saade — a Data Scientist, Software Engineer, and Mathematician with a passion for
-          machine learning, AI, and building useful, human-centered technology. I enjoy working on projects that
-          blend technical depth with real-world impact, from early diagnosis tools for neurological conditions to
-          game-playing agents and finance models.
+          Hi, I'm Marcos Saade — a Machine Learning Engineer and Applied Mathematician specializing in building 
+          production-grade ML systems that solve real-world problems. My work spans computer vision, natural language 
+          processing, audio signal processing, reinforcement learning, and optimization—with a consistent focus on 
+          deploying models that make measurable impact.
         </p>
         <p>
-          I’ve also worked on freelance and research-based software projects, focusing on full-stack development,
-          intelligent systems, and applications that combine data science with hardware integration. My experience
-          includes handling diverse data types such as tabular data, audio, and images.
+          I've built systems that directly serve thousands of people: a clinical image processing application now used 
+          by orthopedics clinics serving over 4,000 patients annually, an operations research solution that optimized 
+          my university's transportation fleet (reducing costs while serving hundreds of students and staff daily), and 
+          machine learning models for early Alzheimer's detection through voice analysis, a technology with potential to 
+          help millions worldwide.
+        </p>
+        <p>
+          My expertise includes model optimization and deployment at the edge and end-to-end ML pipelines, from data preprocessing and feature engineering to model training, 
+          validation, and production deployment. I'm comfortable working across the full stack: building React frontends, 
+          FastAPI backends, designing database schemas, and implementing real-time inference systems.
+        </p>
+        <p>
+          This portfolio showcases projects across Computer Vision, NLP, audio ML, time-series forecasting, operations 
+          research, and reinforcement learning.
         </p>
 
+        <p><strong>Languages:</strong> Python, C++, JavaScript, MATLAB, R, SQL.</p>
         <p>
-          On this website, you can explore some of my personal and academic projects. Each one includes a brief
-          write-up explaining the problem, the approach I took, and what I learned along the way.
-        </p>
-
-        <p><strong>Languages:</strong> Python, C++, JavaScript, MATLAB, R, Java.</p>
-        <p>
-          <strong>Frameworks & Libraries:</strong> FastAPI, Flask, React.js/React Native, Express, Electron, SQLAlchemy,
-          Alembic, PyTorch, Scikit-Learn, Pandas, NumPy, OpenCV, PyQt, Git.
+          <strong>ML/AI:</strong> NumPy, Pandas, PyTorch, Scikit-Learn, OpenCV, Keras, llama.cpp, ONNX, TensorRT, Librosa.
         </p>
         <p>
-          <strong>Frameworks & Libraries:</strong> PyTorch, Scikit-Learn, Pandas, NumPy, OpenCV, FastAPI, Flask,
-          React, Express, Electron, SQLAlchemy, Alembic, PyQt, Git.
-        </p>
-        <p>
-          <strong>Skills:</strong> Machine Learning, Data Science, Full-Stack Development, Mathematical Modeling, Optimization.
+          <strong>Engineering:</strong> FastAPI, Flask, React, Node, Electron, PostgreSQL, SQLAlchemy, Docker, Git, REST APIs, CI/CD.
         </p>
         <p>
           <strong>GitHub:</strong> <a href="https://github.com/MarcosSaade" target="_blank" rel="noreferrer">github.com/MarcosSaade</a>

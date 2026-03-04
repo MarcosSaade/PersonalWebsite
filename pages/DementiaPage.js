@@ -5,7 +5,7 @@ import 'katex/dist/katex.min.css';
 
 
 import PageTemplate from '../components/PageTemplate';
-import dementiaImage from '../images/dementia.jpeg';
+import dementiaImage from '../images/dementia.png';
 
 import graphicalAbstract from '../images/dementia/graphical-abstract.png';
 import preprocessingDiagram from '../images/dementia/preprocessing-pipeline.png';

@@ -7,7 +7,7 @@ import financeImage from '../images/quant.png';
 
 export default function MarketPredictionPage() {
   return (
-    <PageTemplate title="Predicting S&P 500 Allocations with Machine Learning" image={financeImage}>
+    <PageTemplate title="Optimal Daily S&P 500 Allocation with ML" image={financeImage}>
       {/* Introduction */}
       <p>
         This project emerged from the <a href="https://www.kaggle.com/competitions/hull-tactical-market-prediction" target="_blank" rel="noopener noreferrer">Hull Tactical Market Prediction</a> Kaggle competition—a challenging forecasting task where participants predicted optimal daily allocations to the S&P 500 index. The twist? All features were completely obfuscated. We had no idea what the actual data represented.
@@ -22,9 +22,9 @@ export default function MarketPredictionPage() {
         What started as a competition challenge became an exercise in modern financial machine learning. I drew heavily from concepts in Marcos López de Prado's "Advances in Financial Machine Learning," implementing purged cross-validation, meta-labeling, and regime-dependent position sizing. The project taught me as much about rigorous ML methodology as it did about quantitative finance.
       </p>
 
-      <h2>The Challenge: Tactical Asset Allocation Under Uncertainty</h2>
+      <h2>The Challenge: Asset Allocation Under Uncertainty</h2>
       <p>
-        Tactical asset allocation is about more than just predicting whether markets will go up or down. It requires three interconnected decisions:
+        Asset allocation is about more than just predicting whether markets will go up or down. It requires three interconnected decisions:
       </p>
       <ul>
         <li><strong>Direction:</strong> Will the market rise or fall?</li>

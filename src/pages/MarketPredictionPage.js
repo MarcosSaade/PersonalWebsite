@@ -12,7 +12,7 @@ import rollingSharpe from '../images/htmp/rolling_sharpe.png';
 
 export default function MarketPredictionPage() {
   return (
-    <PageTemplate title="Predicting S&P 500 Allocations with Machine Learning" image={financeImage}>
+    <PageTemplate title="Optimal Daily S&P 500 Allocation with ML" image={financeImage}>
       {/* Introduction */}
       <p>
         This project emerged from the <a href="https://www.kaggle.com/competitions/hull-tactical-market-prediction" target="_blank" rel="noopener noreferrer">Hull Tactical Market Prediction</a> Kaggle competition—a challenging forecasting task where participants predicted optimal daily allocations to the S&P 500 index.

@@ -6,7 +6,7 @@ import orthopedicsImage from '../images/orthopedics.jpeg';
 import solarPanelImage from '../images/solarpanel.png';
 import financeImage from '../images/finance.jpeg';
 import quantImage from '../images/quant.png';
-import dementiaImage from '../images/dementia.jpeg';
+import dementiaImage from '../images/dementia.png';
 import sirImage from '../images/sir.jpeg';
 import chessImage from '../images/chess.webp';
 import sugarzeroImage from '../images/sugarzero.png';
@@ -26,7 +26,7 @@ function ProjectList() {
       category: 'Machine Learning & AI'
     },
     {
-      title: 'S&P 500 Tactical Allocation with ML',
+      title: 'Optimal Daily S&P 500 Allocation with ML',
       description: 'A sophisticated machine learning system for predicting optimal S&P 500 allocations, developed for a Kaggle competition with obfuscated features. Built a multi-stage pipeline combining gradient boosting for return prediction, volatility forecasting, and meta-labeling for confidence estimation. Implemented purged cross-validation to prevent label leakage, engineered 2,000+ features through quantitative analysis, and applied regime-dependent Kelly criterion for position sizing. Achieved Sharpe ratios of 0.99-1.88 across validation folds, demonstrating consistent risk-adjusted performance.',
       githubLink: 'https://github.com/MarcosSaade/optimal-sp500',
       readMoreLink: '/market-prediction',
@@ -114,7 +114,7 @@ function ProjectList() {
   // Featured projects - the ones to highlight at the top
   const featuredProjectTitles = [
     'Dementia Detection ML Pipeline',
-    'S&P 500 Tactical Allocation with ML',
+    'Optimal Daily S&P 500 Allocation with ML',
     'SugarZero: Self-Play RL for a Custom Board Game'
   ];
 
