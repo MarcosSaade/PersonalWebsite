@@ -17,10 +17,7 @@ function AboutMe() {
           intelligent systems, and applications that combine data science with hardware integration. My experience
           includes handling diverse data types such as tabular data, audio, and images.
         </p>
-        <p>
-          Outside of class and research, I’m also deeply interested in physics, game development, and
-          cybersecurity.
-        </p>
+
         <p>
           On this website, you can explore some of my personal and academic projects. Each one includes a brief
           write-up explaining the problem, the approach I took, and what I learned along the way.
@@ -32,10 +29,11 @@ function AboutMe() {
           Alembic, PyTorch, Scikit-Learn, Pandas, NumPy, OpenCV, PyQt, Git.
         </p>
         <p>
-          <strong>Technologies:</strong> PostgreSQL, REST APIs, full‑stack development, cross‑platform desktop apps.
+          <strong>Frameworks & Libraries:</strong> PyTorch, Scikit-Learn, Pandas, NumPy, OpenCV, FastAPI, Flask,
+          React, Express, Electron, SQLAlchemy, Alembic, PyQt, Git.
         </p>
         <p>
-          <strong>Skills:</strong> Machine Learning, Data Science, Full-Stack Development, Mathematical Modeling, Algorithms.
+          <strong>Skills:</strong> Machine Learning, Data Science, Full-Stack Development, Mathematical Modeling, Optimization.
         </p>
         <p>
           <strong>GitHub:</strong> <a href="https://github.com/MarcosSaade" target="_blank" rel="noreferrer">github.com/MarcosSaade</a>

@@ -18,6 +18,7 @@ import NeuroCapturePage from './pages/NeuroCapturePage';
 import MarketPredictionPage from './pages/MarketPredictionPage';
 import FleetOptimizationPage from './pages/FleetOptimizationPage';
 import SalesPredictionPage from './pages/SalesPredictionPage';
+import VisionSystemPage from './pages/VisionSystemPage';
 
 import './App.css';
 
@@ -45,6 +46,7 @@ function App() {
             <Route path="/market-prediction" element={<MarketPredictionPage />} />
             <Route path="/fleet-optimization" element={<FleetOptimizationPage />} />
             <Route path="/sales-prediction" element={<SalesPredictionPage />} />
+            <Route path="/vision-system" element={<VisionSystemPage />} />
           </Routes>
         </main>
         <Footer />
