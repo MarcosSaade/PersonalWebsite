@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import FeaturedProjectCard from './FeaturedProjectCard';
 import orthopedicsImage from '../images/orthopedics.jpeg';
-import solarPanelImage from '../images/solarpanel.png';
 import financeImage from '../images/finance.jpeg';
 import quantImage from '../images/quant.png';
 import dementiaImage from '../images/dementia.jpeg';
@@ -79,17 +78,8 @@ function ProjectList() {
       tags: ['Simulation', 'Dynamic Systems', 'Differential Equations', 'Data Visualization', 'Numerical Methods', 'Epidemiology']
     },
     {
-      title: 'Solar Panel Cleaning Simulation',
-      shortDescription: 'Computational physics project simulating electric-field based solar panel cleaning for desert environments. Implemented 3D electrostatics model in MATLAB using Coulomb\'s law and superposition principle, applied numerical integration (Euler method) to compute particle trajectories under combined electric and gravitational forces, and optimized system parameters (charge values, bar positioning, rotation mechanisms) for water-free dust removal. Demonstrates applied physics, numerical methods, and engineering problem-solving.',
-      description: 'MATLAB simulation of electric-field based solar panel cleaning under varying environmental conditions.',
-      githubLink: 'https://github.com/MarcosSaade/solar-panel-cleaning',
-      readMoreLink: '/solarpanel',
-      image: solarPanelImage,
-      tags: ['Computational Physics', 'MATLAB Modeling', 'Numerical Analysis', 'Renewable Energy']
-    },
-    {
       title: 'Fleet Optimization with Monte Carlo Simulation',
-      shortDescription: 'Operations research project optimizing my university\'s transportation fleet configuration. Built discrete-event simulation framework in Python to model stochastic passenger arrivals, vehicle scheduling, and queueing dynamics. Evaluated 48 fleet configurations across 50 Monte Carlo runs each (2,400+ simulations), balancing service quality (average wait time < 10 min) with operational costs. Applied optimization techniques and statistical analysis to provide data-driven recommendations for resource allocation under uncertainty.',
+      shortDescription: 'Operations research project optimizing my university\'s transportation fleet configuration. Built discrete-event simulation framework in Python to model stochastic passenger arrivals, vehicle scheduling, and queueing dynamics. Evaluated 48 fleet configurations across 500 Monte Carlo runs each, balancing service quality (average wait time < 10 min) with operational costs. Applied optimization techniques and statistical analysis to provide data-driven recommendations for resource allocation under uncertainty.',
       description: 'Discrete-event simulation framework optimizing corporate transportation fleet configuration using Monte Carlo analysis to balance service quality with operational costs.',
       githubLink: 'https://github.com/MarcosSaade/fleet-optimization',
       readMoreLink: '/fleet-optimization',
@@ -140,8 +130,7 @@ function ProjectList() {
       projects.find(p => p.title === 'Fleet Optimization with Monte Carlo Simulation')
     ],
     'Modeling': [
-      projects.find(p => p.title === 'Differential Epidemic Model and Stochastic Simulation'),
-      projects.find(p => p.title === 'Solar Panel Cleaning Simulation')
+      projects.find(p => p.title === 'Differential Epidemic Model and Stochastic Simulation')
     ]
   };
 

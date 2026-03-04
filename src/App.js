@@ -12,7 +12,6 @@ import ChessPage from './pages/ChessPage';
 import BanortePage from './pages/BanortePage';
 import SIRPage from './pages/SIRPage';
 import OrthopedicsPage from './pages/OrthopedicsPage';
-import SolarPanelPage from './pages/SolarPanelPage';
 import SugarPage from './pages/SugarPage';
 import NeuroCapturePage from './pages/NeuroCapturePage';
 import MarketPredictionPage from './pages/MarketPredictionPage';
@@ -40,7 +39,6 @@ function App() {
             <Route path="/banorte" element={<BanortePage />} />
             <Route path="/sir" element={<SIRPage />} />
             <Route path="/orthopedics" element={<OrthopedicsPage />} />
-            <Route path="/solarpanel" element={<SolarPanelPage />} />
             <Route path="/sugarzero" element={<SugarPage />} />
             <Route path="/neurocapture" element={<NeuroCapturePage />} />
             <Route path="/market-prediction" element={<MarketPredictionPage />} />
